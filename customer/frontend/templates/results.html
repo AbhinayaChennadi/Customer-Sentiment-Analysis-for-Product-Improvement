@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Sentiment Analysis Results</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+<div class="container">
+    <h1>Sentiment Analysis Results</h1>
+
+    <h2>Individual Reviews</h2>
+    <ul>
+        {% for r in results %}
+            <li>"{{ r.text }}" → Sentiment: {{ r.sentiment }} (Score: {{ "%.2f"|format(r.score) }})</li>
+        {% endfor %}
+    </ul>
+
+    <h2>Summary</h2>
+    <p>Positive: {{ summary['Positive'] }}</p>
+    <p>Negative: {{ summary['Negative'] }}</p>
+    <p>Neutral: {{ summary['Neutral'] }}</p>
+
+    <h2>Management Suggestions</h2>
+    <p>{{ suggestion }}</p>
+
+    <a href="{{ url_for('home') }}">Go Back</a>
+</div>
+</body>
+</html>
